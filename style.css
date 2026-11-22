@@ -1,0 +1,856 @@
+/* =====================================================
+   PAHAR TRAILS: colourful premium design (beginner friendly)
+   Change the colors in :root to restyle the whole site
+   ===================================================== */
+
+:root {
+  --night: #1d1230;            /* darkest purple */
+  --ink: #2a1a45;             /* dark purple */
+  --snow: #fffaf7;            /* warm white background */
+  --sand: #fff0ec;            /* soft peach-pink background */
+  --text: #2a1a3d;
+  --soft: #6b5d7a;            /* secondary text */
+  --deep-pink: #c2275f;       /* strong pink for small text on light backgrounds */
+  --pink: #ff5c8a;
+  --orange: #ff9f68;
+  --yellow: #ffd166;
+  --radius: 26px;
+  /* gradients we reuse everywhere */
+  --grad-warm: linear-gradient(135deg, #ff5c8a, #ff9f68);
+  --grad-text: linear-gradient(90deg, #ff7eb3, #ffb26b, #ffd166);
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+}
+
+/* ---------- Reset: remove default browser spacing ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--snow);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 24px;
+}
+
+.narrow {
+  max-width: 760px;
+}
+
+/* Text filled with a gradient (colorful headlines) */
+.gradient-text {
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ---------- Navigation ---------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(29, 18, 48, 0.96);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-inner {
+  max-width: 1100px;
+  margin: auto;
+  height: 60px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+}
+
+.brand span {
+  color: #ff8fb1;
+  margin-left: 4px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  font-size: 14px;
+  color: #d9cbe6;
+}
+
+.nav-links a:hover {
+  color: white;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  background: var(--grad-warm);
+  color: #2a0f2e;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 980px;        /* pill shape */
+  font-size: 17px;
+  font-weight: 700;
+  font-family: var(--font);
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(255, 92, 138, 0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  filter: brightness(1.08);
+  box-shadow: 0 12px 28px rgba(255, 92, 138, 0.45);
+}
+
+.btn-small {
+  padding: 8px 18px;
+  font-size: 14px;
+  box-shadow: none;
+}
+
+.btn-dark {
+  background: var(--ink);
+  color: white;
+  box-shadow: none;
+}
+
+.link-arrow {
+  color: white;
+  font-size: 19px;
+}
+
+.link-arrow:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  color: white;
+  padding: 130px 24px 360px;   /* big bottom space for the mountains */
+  /* sky: deep purple -> violet -> hot pink -> orange sunset */
+  background: linear-gradient(180deg, #1d1230 0%, #4a1f6b 38%, #c13b7d 72%, #ff8a5c 100%);
+}
+
+.hero-content {
+  position: relative;          /* keeps text above the mountains */
+  z-index: 2;
+}
+
+.eyebrow {
+  color: var(--deep-pink);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.eyebrow.center {
+  text-align: center;
+}
+
+.eyebrow.light,
+.hero .eyebrow {
+  color: #ffb3cb;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 8vw, 84px);   /* shrinks on small screens */
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.hero-text {
+  max-width: 620px;
+  margin: 24px auto 34px;
+  font-size: 20px;
+  color: #f3e3ee;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+/* The sun: a soft glowing circle */
+.sun {
+  position: absolute;
+  left: 50%;
+  bottom: 190px;
+  width: 460px;
+  height: 460px;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(255, 220, 150, 0.95), rgba(255, 159, 104, 0) 65%);
+}
+
+/* Mountains: shapes cut out with clip-path (a list of points) */
+.mountain {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+}
+
+.mountain-back {
+  height: 300px;
+  background: #6a2d86;
+  clip-path: polygon(0 100%, 0 58%, 12% 30%, 22% 54%, 35% 14%, 48% 52%, 60% 26%, 74% 56%, 86% 20%, 100% 50%, 100% 100%);
+}
+
+.mountain-front {
+  height: 210px;
+  background: var(--night);
+  clip-path: polygon(0 100%, 0 62%, 15% 34%, 28% 64%, 42% 28%, 55% 66%, 70% 26%, 83% 62%, 100% 36%, 100% 100%);
+}
+
+/* ---------- Stats (dark, continues from the mountains) ---------- */
+.stats {
+  background: var(--night);
+  color: white;
+  padding: 20px 0 80px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  text-align: center;
+}
+
+.stat strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 54px;
+}
+
+.stat span {
+  color: #c4b5d6;
+  font-size: 17px;
+}
+
+/* every number gets its own color */
+.stat:nth-child(1) strong { color: #ff8fb1; }
+.stat:nth-child(2) strong { color: #ffb26b; }
+.stat:nth-child(3) strong { color: #ffd166; }
+.stat:nth-child(4) strong { color: #5eead4; }
+
+/* ---------- Generic section ---------- */
+.section {
+  padding: 120px 0;
+}
+
+.sand {
+  background: var(--sand);
+}
+
+.section-title {
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(34px, 5vw, 54px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.section-sub {
+  text-align: center;
+  color: var(--soft);
+  font-size: 20px;
+  margin: 14px 0 60px;
+}
+
+/* ---------- Grid ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 24px;
+}
+
+/* ---------- Destination cards ---------- */
+.dest {
+  position: relative;
+  min-height: 360px;
+  padding: 30px;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* dark fade at the bottom so the white text is always easy to read */
+.dest::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(25, 8, 40, 0.7), rgba(25, 8, 40, 0) 62%);
+}
+
+.dest > * {
+  position: relative;
+  z-index: 1;                  /* keeps text above the dark fade */
+}
+
+.dest:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 50px rgba(42, 26, 69, 0.3);
+}
+
+/* emoji sits inside a frosted glass square */
+.dest-emoji {
+  width: 68px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+}
+
+.dest h3 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+.dest p {
+  font-size: 16px;
+  color: #fbf1f6;
+}
+
+/* a different bright gradient for each destination */
+.dest-hunza  { background: linear-gradient(160deg, #ff7eb3, #ff9f68); }   /* blossom pink to apricot */
+.dest-skardu { background: linear-gradient(160deg, #6a5cff, #38bdf8); }   /* lake blue and violet */
+.dest-fairy  { background: linear-gradient(160deg, #10b981, #84cc16); }   /* meadow greens */
+.dest-swat   { background: linear-gradient(160deg, #d946ef, #7c3aed); }   /* magenta to purple */
+.dest-neelum { background: linear-gradient(160deg, #14b8a6, #3b82f6); }   /* turquoise water */
+.dest-naran  { background: linear-gradient(160deg, #6d597a, #e56b6f); }   /* pink sunset */
+
+/* ---------- Why us: colorful icon tiles ---------- */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 36px;
+}
+
+.feature {
+  text-align: center;
+}
+
+.feature-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  border-radius: 26px;
+  box-shadow: 0 10px 24px rgba(42, 26, 69, 0.12);
+}
+
+.icon-pink   { background: linear-gradient(135deg, #ffd1e0, #ff9bbd); }
+.icon-orange { background: linear-gradient(135deg, #ffe2c7, #ffb27a); }
+.icon-purple { background: linear-gradient(135deg, #e3dbff, #b9a6ff); }
+.icon-teal   { background: linear-gradient(135deg, #c9f7ef, #7fe0d0); }
+
+.feature h3 {
+  font-size: 21px;
+  margin-bottom: 6px;
+}
+
+.feature p {
+  color: var(--soft);
+  font-size: 17px;
+}
+
+/* ---------- Dark showcase ---------- */
+.dark {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+  color: white;
+}
+
+/* two soft colored glows in the background */
+.dark::before,
+.dark::after {
+  content: "";
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+}
+
+.dark::before {
+  right: -140px;
+  top: -140px;
+  background: radial-gradient(circle, rgba(124, 92, 255, 0.4), rgba(124, 92, 255, 0) 65%);
+}
+
+.dark::after {
+  left: -160px;
+  bottom: -200px;
+  background: radial-gradient(circle, rgba(255, 92, 138, 0.3), rgba(255, 92, 138, 0) 65%);
+}
+
+.showcase {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: center;
+}
+
+.showcase h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  margin-bottom: 22px;
+}
+
+.showcase-text > p:not(.eyebrow) {
+  color: #cfc0df;
+  font-size: 20px;
+}
+
+.checklist {
+  list-style: none;
+  margin-top: 28px;
+  display: grid;
+  gap: 12px;
+  font-size: 18px;
+}
+
+.checklist li::before {
+  content: "\2713";            /* check mark */
+  color: #5eead4;
+  margin-right: 12px;
+  font-weight: 700;
+}
+
+/* Itinerary card: soft glass look on dark */
+.itinerary {
+  padding: 36px;
+  border-radius: var(--radius);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.itinerary h3 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  margin-bottom: 24px;
+}
+
+.timeline {
+  list-style: none;
+  border-left: 2px solid rgba(255, 126, 179, 0.5);
+  padding-left: 26px;
+  display: grid;
+  gap: 20px;
+}
+
+.timeline li {
+  position: relative;
+  color: #ebe0f3;
+}
+
+/* the little dot on the line */
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: -34px;
+  top: 7px;
+  width: 14px;
+  height: 14px;
+  background: var(--grad-warm);
+  border-radius: 50%;
+}
+
+.timeline span {
+  display: block;
+  color: #ffb3cb;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.note {
+  margin-top: 24px;
+  font-size: 13px;
+  color: #a893bd;
+}
+
+/* ---------- Pricing plans ---------- */
+.plan {
+  position: relative;
+  background: white;
+  padding: 40px 32px;
+  border-radius: var(--radius);
+  border: 1px solid #f5dde2;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plan:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 44px rgba(42, 26, 69, 0.14);
+}
+
+.plan h3 {
+  font-family: var(--font-display);
+  font-size: 26px;
+}
+
+/* the "3 days" label is a small colored pill */
+.plan-days {
+  align-self: flex-start;
+  margin: 10px 0 18px;
+  padding: 4px 14px;
+  border-radius: 980px;
+  font-size: 14px;
+  font-weight: 700;
+  background: #d4f7f2;
+  color: #0d7a6f;
+}
+
+.price {
+  font-size: 38px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 22px;
+}
+
+.plan-list {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+  margin-bottom: 30px;
+  color: var(--soft);
+  flex: 1;                     /* pushes the button to the bottom */
+}
+
+.plan-list li::before {
+  content: "\2713";
+  color: var(--deep-pink);
+  margin-right: 10px;
+  font-weight: 700;
+}
+
+/* The highlighted middle plan */
+.plan.featured {
+  background: linear-gradient(160deg, #2a1a45, #5a2272);
+  color: white;
+  border-color: #ff7eb3;
+  box-shadow: 0 24px 56px rgba(255, 92, 138, 0.3);
+}
+
+.plan.featured .plan-days {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffd166;
+}
+
+.plan.featured .plan-list {
+  color: #e0d3ec;
+}
+
+.plan.featured .plan-list li::before {
+  color: #ffd166;
+}
+
+/* the third plan gets a purple pill */
+.plan:nth-child(3) .plan-days {
+  background: #e6dfff;
+  color: #5b3fd1;
+}
+
+.badge {
+  position: absolute;
+  top: -14px;
+  left: 32px;
+  background: var(--grad-warm);
+  color: #2a0f2e;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 980px;
+}
+
+/* ---------- Testimonials ---------- */
+.card {
+  background: white;
+  padding: 34px 30px;
+  border-radius: var(--radius);
+  border: 1px solid #f5dcdc;
+  box-shadow: 0 2px 12px rgba(42, 26, 69, 0.06);
+}
+
+.stars {
+  color: #ffb703;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+}
+
+.quote p {
+  font-size: 19px;
+  line-height: 1.5;
+  margin-bottom: 22px;
+}
+
+.quote .stars {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.who {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.who strong {
+  display: block;
+  font-size: 16px;
+}
+
+.who div span {
+  color: var(--soft);
+  font-size: 14px;
+}
+
+.avatar {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.a1 { background: linear-gradient(135deg, #ff5c8a, #ff9f68); }
+.a2 { background: linear-gradient(135deg, #6a5cff, #38bdf8); }
+.a3 { background: linear-gradient(135deg, #10b981, #84cc16); }
+
+/* ---------- FAQ ---------- */
+.narrow .section-title {
+  margin-bottom: 40px;
+}
+
+details {
+  border-bottom: 1px solid #f0d3d6;
+  padding: 24px 0;
+}
+
+summary {
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
+  list-style: none;            /* hide the default arrow */
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::after {
+  content: "+";
+  float: right;
+  color: var(--deep-pink);
+  font-size: 26px;
+  line-height: 1;
+}
+
+details[open] summary::after {
+  content: "\2212";            /* minus sign */
+}
+
+details p {
+  margin-top: 14px;
+  color: var(--soft);
+  font-size: 18px;
+}
+
+/* ---------- Contact (colorful gradient with a white form card) ---------- */
+.contact {
+  background: linear-gradient(160deg, #2a1a45 0%, #6a2a7a 55%, #c13b7d 100%);
+}
+
+.contact .section-title {
+  color: white;
+}
+
+.contact .section-sub {
+  color: #eadcf3;
+}
+
+.form {
+  display: grid;
+  gap: 10px;
+  background: white;
+  padding: 40px;
+  border-radius: var(--radius);
+  box-shadow: 0 30px 60px rgba(20, 8, 28, 0.35);
+}
+
+.form label {
+  font-weight: 600;
+  font-size: 15px;
+  margin-top: 8px;
+}
+
+.form input,
+.form select,
+.form textarea {
+  padding: 15px 18px;
+  border: 1px solid #f1d9dc;
+  border-radius: 14px;
+  background: #fff6f5;
+  font-family: var(--font);
+  font-size: 17px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form input:focus,
+.form select:focus,
+.form textarea:focus {
+  border-color: var(--pink);
+  box-shadow: 0 0 0 4px rgba(255, 92, 138, 0.22);
+}
+
+.form .btn {
+  margin-top: 20px;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  background: var(--night);
+  padding: 60px 0 30px;
+  font-size: 14px;
+  color: #a893bd;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 30px;
+}
+
+.footer strong {
+  display: block;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.footer a {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.footer a:hover {
+  color: white;
+}
+
+.copyright {
+  max-width: 1100px;
+  margin: 40px auto 0;
+  padding: 20px 24px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Section links should not hide under the sticky bar */
+section[id] {
+  scroll-margin-top: 60px;
+}
+
+/* ---------- Mobile (tablets and phones) ---------- */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  .section {
+    padding: 80px 0;
+  }
+  .hero {
+    padding: 80px 24px 280px;
+  }
+  .hero-text,
+  .section-sub {
+    font-size: 18px;
+  }
+  .sun {
+    bottom: 130px;
+    width: 340px;
+    height: 340px;
+  }
+  .mountain-back {
+    height: 220px;
+  }
+  .mountain-front {
+    height: 150px;
+  }
+  .showcase {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .form {
+    padding: 28px 22px;
+  }
+}
